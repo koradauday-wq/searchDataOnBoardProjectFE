@@ -73,7 +73,7 @@ export default function SuggestionsDiv2({
                   margin: "3px",
                   backgroundColor: "rgba(239, 240, 240, 1)",
                   borderRadius: "7px",
-                  width: "450px",
+                  width: "30vw",
                   maxWidth: "fitContent",
                 }}
                 onClick={(e) => {

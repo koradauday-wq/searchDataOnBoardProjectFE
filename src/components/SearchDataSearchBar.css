@@ -8,6 +8,7 @@
   height: 100vh;
   margin: 0;
   padding: 0;
+  /* min-width: 500px; */
 }
 body {
   margin: 0px;
@@ -26,11 +27,20 @@ body {
   background-color: white;
   display: flex;
 
-  width: 1300px;
+  width: 80vw;
+  /* width: 1300px; */
 
-  padding: 10px;
-  transform: translate(120px, 50px);
+  /* padding: 10px; */
+  padding-left: 0.66vw;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-right: 0.66vw;
+
+  /* transform: translate(120px, 50px); */
+  transform: translate(8vw, 50px);
   /* margin-top: 100px; */
+
+  margin-right: 5.2vw;
   height: 35px;
   border-radius: 5px;
   box-shadow: 1px 1px 2px 2px rgb(162, 155, 155);
@@ -44,36 +54,55 @@ body {
   align-items: center;
   color: rgb(39, 112, 239);
   /* margin-right: 10px; */
-  width: 30px;
+  /* width: 30px; */
+  width: 2vw;
+
+  /* font-size: 12px; */
+  font-size: 0.8vw;
+
   height: 30px;
   display: inline-block;
-  margin-right: 10px;
+  /* margin-right: 10px; */
+  margin-right: 0.66vw;
   background-color: rgb(222, 232, 250);
 }
 .dropDown:hover {
   cursor: pointer;
 }
 .data-source-selector {
-  padding-right: 10px;
-  padding-left: 10px;
+  /* padding-right: 10px; */
+  /* padding-left: 10px; */
+  padding-left: 0.66vw;
+  padding-right: 0.66vw;
+
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   height: 30px;
   align-content: center;
   border-left: 1px solid hsl(0, 1%, 68%);
   display: inline-block;
-  font-size: 15px;
+  /* font-size: 15px; */
+  font-size: 1vw;
+
   color: rgb(87, 87, 87);
+
+  width: 3.33vw;
 }
+
 .arrowDropDown {
   height: 25px;
-  width: 25px;
+  /* width: 25px; */
+  width: 1.66vw;
   margin-top: 3px;
   align-content: center;
   display: inline-block;
   border: none;
   border-radius: 15px;
-  font-size: 20px;
-  padding-right: 25px;
+  /* font-size: 20px; */
+  font-size: 1.33vw;
+  /* padding-right: 25px; */
+  padding-right: 1.66vw;
+  justify-content: left;
+
   background-color: rgb(239, 238, 238);
 }
 .arrowDropDown:hover {
@@ -93,6 +122,9 @@ body {
   display: inline-block;
   color: hsl(0, 0%, 56%);
   font-weight: bolder;
+  width: 1.4vw;
+  /* font-size: 15px; */
+  font-size: 1vw;
 }
 .search-bar-and-suggestions {
   /* padding: 30px; */
@@ -114,14 +146,21 @@ body {
   border-bottom: 20px solid rgb(199, 198, 198);
 }
 .clear-button {
-  margin-left: 10px;
+  /* margin-left: 10px; */
+  margin-left: 0.66vw;
+
   height: 30px;
-  width: 30px;
+  /* width: 30px; */
+  width: 2vw;
   display: inline-block;
-  margin-right: 10px;
+  /* margin-right: 10px; */
+  margin-right: 0.66vw;
+
   background-color: hsl(0, 1%, 86%);
   border: none;
   border-radius: 15px;
+  /* font-size: 15px; */
+  font-size: 1vw;
 }
 .clear-button:hover {
   cursor: pointer;
@@ -131,7 +170,11 @@ body {
   display: inline-block;
   border: none;
   border-radius: 20px;
-  width: 80px;
+  /* width: 80px; */
+  width: 5.33vw;
+  /* min-width: 30px; */
+
+  margin-right: 0.66vw;
 }
 .submit-button:hover {
   cursor: pointer;
@@ -140,8 +183,11 @@ body {
   display: inline-block;
 
   height: 30px;
-  width: 950px;
+  /* width: 950px; */
+  width: 60vw;
+
   background-color: white;
+  /* background-color: blue; */
 
   border: none;
   align-content: center;
@@ -154,12 +200,14 @@ body {
   border: none;
 }
 .empty-suggestions-msg {
-  width: 500px;
+  /* width: 500px; */
+  width: 33.3vw;
   justify-content: center;
   padding-bottom: 20px;
 }
 .rejection-msg {
-  width: 500px;
+  /* width: 500px; */
+  width: 33.3vw;
   justify-content: center;
   padding-bottom: 20px;
 }
