@@ -1,9 +1,7 @@
 import { useState } from "react";
 
 import "./App.css";
-import SearchDataSearchBar from "./components/withDebounce/searchDataSearchBarDebounceWorking.jsx";
-
-// import SearchDataSearchBar from "./components/withoutDebounce/searchDataSearchBar-3.jsx";
+import SearchDataSearchBar from "./components/searchDataSearchBar.jsx";
 
 function App() {
   return (

@@ -1,12 +1,8 @@
 import { useRef, useEffect, useState, useCallback } from "react";
 import "./SearchDataSearchBar.css";
 import getSuggestions from "./getSuggestionsAPI";
-import SuggestionsDiv2 from "./suggestionsDiv2";
+import Suggestions from "./suggestionsDiv";
 import { GoSearch } from "react-icons/go";
-import { VscClose } from "react-icons/vsc";
-// import { IoIosArrowDropdown } from "react-icons/io";
-import { RiArrowDropDownLine } from "react-icons/ri";
-import { RxDropdownMenu } from "react-icons/rx";
 
 function debounce(cb, delay) {
   let timer;
@@ -27,9 +23,10 @@ export function getLastWord(totalText) {
     idx--;
   }
   last_Word = reverseString(last_Word);
-  // console.log(last_Word);
+
   return last_Word;
 }
+
 export function reverseString(str) {
   const charArray = str.split("");
   const reversedArray = charArray.reverse();
@@ -37,11 +34,11 @@ export function reverseString(str) {
   return reversedStr;
 }
 
-export default function SearchDataSearchBar2() {
+export default function SearchDataSearchBar() {
   const [ShowSuggestionsBool, setShowSuggestionsBool] = useState(false);
   const [clickedSuggestionDiv, setClickedSuggestionDiv] = useState(false);
   const [simpleText, setSimpleText] = useState("");
-  // sample text, workking to set the suggestions to the word
+
   const [suggestionsArr, setSuggestionsArr] = useState([]);
   // All the suggestion words getting from the API
 
@@ -53,17 +50,13 @@ export default function SearchDataSearchBar2() {
 
   let last_Word = "";
 
-  function handleChangeForTheSearchBar(e) {
-    console.log("handle change triggered");
-
-    const totalText = e.target.value;
-    setSimpleText(totalText);
+  function handleChangeForTheSearchBar(totalText) {
     if (totalText.length == 0) {
       setShowSuggestionsBool(false);
       return;
     }
 
-    if (e.nativeEvent.data === " ") {
+    if (totalText[totalText.length - 1] === " ") {
       last_Word = "";
     } else {
       last_Word = getLastWord(totalText);
@@ -72,25 +65,25 @@ export default function SearchDataSearchBar2() {
     if (last_Word.length === 0) {
       setShowSuggestionsBool(false);
     } else {
-      console.log("executing API call");
-
       getSuggestions(last_Word)
         .then((res) => {
-          console.log("got some results");
-
           setShowSuggestionsBool(true);
           setPromiseRejected(false);
 
           setSuggestionsArr(res);
         })
         .catch((e) => {
-          console.log(e);
           setShowSuggestionsBool(true);
-          // setEmptySuggestions(true);
+
           setPromiseRejected(true);
         });
     }
   }
+
+  const debounceHandler = useCallback(
+    debounce(handleChangeForTheSearchBar, 1000),
+    []
+  );
 
   useEffect(() => {
     try {
@@ -115,14 +108,9 @@ export default function SearchDataSearchBar2() {
         }}
       >
         <div className="container">
-          <button className="dropDown">
-            <RxDropdownMenu />
-          </button>
+          <button className="dropDown"></button>
           <div className="data-source-selector">Data-source</div>
-          <button className="arrowDropDown">
-            {/* <IoIosArrowDropdown /> */}
-            <RiArrowDropDownLine />
-          </button>
+          <button className="arrowDropDown"></button>
           <div className="vertical-hr"></div>
 
           <div className="search-icon">
@@ -140,10 +128,16 @@ export default function SearchDataSearchBar2() {
                 className="search-bar"
                 id="search-bar"
                 value={simpleText}
-                onChange={(e) => handleChangeForTheSearchBar(e)}
+                onChange={(e) => {
+                  const totalText = e.target.value;
+                  setSimpleText(totalText);
+                  debounceHandler(totalText);
+                }}
                 onFocus={(e) => {
                   setIsFocused(true);
-                  handleChangeForTheSearchBar(e);
+                  const totalText = e.target.value;
+                  setSimpleText(totalText);
+                  handleChangeForTheSearchBar(totalText);
                 }}
                 onBlur={() => {
                   console.log("onBlur");
@@ -154,7 +148,7 @@ export default function SearchDataSearchBar2() {
                 }}
               ></textarea>
               {isFocused && ShowSuggestionsBool && (
-                <SuggestionsDiv2
+                <Suggestions
                   arr={suggestionsArr}
                   setClickedSuggestionDiv={setClickedSuggestionDiv}
                   clickedSuggestionDiv={clickedSuggestionDiv}
@@ -172,9 +166,7 @@ export default function SearchDataSearchBar2() {
             }}
             onClick={() => setSimpleText("")}
             className="clear-button"
-          >
-            <VscClose />
-          </button>
+          ></button>
           <button
             style={{
               color: !isFocused ? "#454545" : "white",

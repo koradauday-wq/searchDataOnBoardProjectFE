@@ -1,57 +1,19 @@
-import {
-  getLastWord,
-  reverseString,
-} from "./withDebounce/searchDataSearchBarDebounceWorking";
+import { getLastWord } from "./searchDataSearchBar";
 import "./SearchDataSearchBar.css";
 
-export default function SuggestionsDiv2({
+export default function Suggestions({
   arr,
   setClickedSuggestionDiv,
-
   clickedSuggestionDiv,
-
   simpleText,
   setSimpleText,
-
   promiseRejected,
 }) {
   let total_Text = simpleText;
-
   let lastWord = getLastWord(total_Text);
-  console.log("entered suggestions div");
-  // const normalStyle = {
-  //   // fontWeight: isMatchedWithLastWord ? "bold" : "normal",
-  //   // backgroundColor: "rgb(32, 100, 201)",
-  //   color: "#454545",
-  //   margin: "3px",
-  //   backgroundColor: "#dfe0e0ff",
-  //   borderRadius: "7px",
-  //   width: "450px",
-  //   maxWidth: "fitContent",
-  // };
-  // const hoverstyle = {
-  //   // fontWeight: isMatchedWithLastWord ? "bold" : "normal",
-  //   // backgroundColor: "rgb(32, 100, 201)",
-  //   color: "#454545",
-  //   margin: "3px",
-  //   backgroundColor: "#dfe0e0ff",
-  //   borderRadius: "7px",
-  //   width: "450px",
-  //   maxWidth: "fitContent",
-  // };
-
-  // still in making of the functionality of "wanted to make the suggestion word bigger than usual while hovering
-  // on the word using conditional styling.."
 
   return (
-    <div
-      className="suggestions-box"
-      // style={{
-      //   width: !(!(arr.length === 0) && !promiseRejected)
-      //     ? "500px"
-      //     : "fitContent",
-      // }}
-    >
+    <div className="suggestions-box">
       {!(arr.length === 0) && !promiseRejected && (
         <div>
           {arr.map((word) => {
@@ -75,6 +37,7 @@ export default function SuggestionsDiv2({
                   borderRadius: "7px",
                   width: "30vw",
                   maxWidth: "fitContent",
+                  textAlign: "center",
                 }}
                 onClick={(e) => {
                   let clicked_word = e.target.innerText;
