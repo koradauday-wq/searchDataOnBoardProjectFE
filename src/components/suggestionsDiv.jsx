@@ -58,9 +58,9 @@ export default function Suggestions({
                   totalText += clicked_word;
                   totalText += " ";
                   setSimpleText(totalText);
-                  setTimeout(() => {
-                    setClickedSuggestionDiv(!clickedSuggestionDiv);
-                  }, 10);
+                  // setTimeout(() => {
+                  setClickedSuggestionDiv(!clickedSuggestionDiv);
+                  // }, 10);
                 }}
               >
                 {word}

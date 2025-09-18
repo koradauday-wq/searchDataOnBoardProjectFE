@@ -139,13 +139,13 @@ export default function SearchDataSearchBar() {
                   setSimpleText(totalText);
                   handleChangeForTheSearchBar(totalText);
                 }}
-                onBlur={() => {
-                  console.log("onBlur");
-                  const id = setTimeout(() => {
-                    setIsFocused(false);
-                    setSuggestionsArr([]);
-                  }, 10);
-                }}
+                // onBlur={() => {
+                //   console.log("onBlur");
+                //   const id = setTimeout(() => {
+                //     setIsFocused(false);
+                //     setSuggestionsArr([]);
+                //   }, 10);
+                // }}
               ></textarea>
               {isFocused && ShowSuggestionsBool && (
                 <Suggestions
