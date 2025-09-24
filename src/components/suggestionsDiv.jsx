@@ -1,14 +1,19 @@
 import { getLastWord, removeLastWordAndAddNewWord } from "../utils/utlis";
 import "./SearchDataSearchBar.css";
 import { statements } from "../utils/strings";
+import PropTypes from "prop-types";
+
+Suggestions.propTypes = {
+  arr: PropTypes.array,
+  simpleText: PropTypes.string,
+  setSimpleText: PropTypes.func,
+  setShowSuggestions: PropTypes.func,
+};
+
 export default function Suggestions({
   arr,
-  setClickedSuggestion,
-  clickedSuggestion,
   simpleText,
   setSimpleText,
-  // promiseRejected,
-  // suggestionsRef,
   setShowSuggestions,
 }) {
   let lastWord = getLastWord(simpleText);
@@ -16,19 +21,15 @@ export default function Suggestions({
   function onClickSuggestion(e) {
     e.preventDefault();
     let clickedWord = e.target.innerText;
-    // console.log("clicked");
     let newText = removeLastWordAndAddNewWord(clickedWord, simpleText);
     setSimpleText(newText);
-    setClickedSuggestion(!clickedSuggestion);
     setShowSuggestions(false);
   }
 
   return (
     <div className="suggestions-box">
       {!(arr.length === 0) && (
-        <div
-        // ref={suggestionsRef}
-        >
+        <div>
           {arr.map((word) => {
             const isMatchedWithLastWord = lastWord === word;
 
@@ -40,17 +41,6 @@ export default function Suggestions({
                     ? "bold-suggestions-word"
                     : "normal-suggestions-word"
                 }
-                // style={{
-                //   fontWeight: isMatchedWithLastWord ? "bold" : "normal",
-
-                //   color: "#454545",
-                //   margin: "3px",
-                //   backgroundColor: "rgba(239, 240, 240, 1)",
-                //   borderRadius: "7px",
-                //   width: "30vw",
-                //   maxWidth: "fitContent",
-                //   textAlign: "center",
-                // }}
                 onMouseDown={onClickSuggestion}
               >
                 {word}
@@ -65,12 +55,6 @@ export default function Suggestions({
           <p>{statements.EmptySuggestions}</p>
         </div>
       )}
-
-      {/* {promiseRejected && (
-        <div className="rejection-msg">
-          <p>{statements.SomethingWentWrong}</p>
-        </div>
-      )} */}
     </div>
   );
 }

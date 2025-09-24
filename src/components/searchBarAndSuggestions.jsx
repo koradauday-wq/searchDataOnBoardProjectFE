@@ -1,4 +1,24 @@
 import Suggestions from "./suggestionsDiv";
+import PropTypes from "prop-types";
+
+SearchBarAndSuggestions.propTypes = {
+  inputRef: PropTypes.shape({
+    current: PropTypes.instanceOf(HTMLInputElement),
+  }),
+  simpleText: PropTypes.string,
+  setSimpleText: PropTypes.func,
+  debounceHandler: PropTypes.func,
+  setIsFocused: PropTypes.func,
+  handleSearchBarChange: PropTypes.func,
+  setSuggestionsArr: PropTypes.func,
+  isFocused: PropTypes.bool,
+  showSuggestions: PropTypes.bool,
+  suggestionsArr: PropTypes.array,
+  promiseRejected: PropTypes.bool,
+  setShowSuggestions: PropTypes.func,
+  setPromiseRejected: PropTypes.func,
+};
+
 export default function SearchBarAndSuggestions({
   inputRef,
   simpleText,
@@ -10,10 +30,7 @@ export default function SearchBarAndSuggestions({
   isFocused,
   showSuggestions,
   suggestionsArr,
-  clickedSuggestion,
-  setClickedSuggestion,
   promiseRejected,
-  // suggestionsRef,
   setShowSuggestions,
   setPromiseRejected,
 }) {
@@ -34,14 +51,10 @@ export default function SearchBarAndSuggestions({
           }}
           onFocus={() => {
             setIsFocused(true);
-            // const totalText = e.target.value;
-            // setSimpleText(totalText);
+
             handleSearchBarChange(simpleText);
           }}
           onBlur={(e) => {
-            // if (e.relatedTarget === suggestionsRef.current) {
-            //   return;
-            // }
             setIsFocused(false);
             setPromiseRejected(false);
             setSuggestionsArr([]);
@@ -51,13 +64,9 @@ export default function SearchBarAndSuggestions({
         {isFocused && showSuggestions && !promiseRejected && (
           <Suggestions
             arr={suggestionsArr}
-            setClickedSuggestion={setClickedSuggestion}
-            clickedSuggestion={clickedSuggestion}
             simpleText={simpleText}
             setSimpleText={setSimpleText}
             setShowSuggestions={setShowSuggestions}
-            // suggestionsRef={suggestionsRef}
-            // promiseRejected={promiseRejected}
           />
         )}
       </div>

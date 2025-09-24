@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 export default function ClearButton({
   simpleText,
   setSimpleText,
@@ -5,9 +6,6 @@ export default function ClearButton({
 }) {
   return (
     <button
-      // style={{
-      //   visibility: simpleText.length === 0 ? "hidden" : "visible",
-      // }}
       className={
         simpleText.length === 0 ? "clear-button-hidden" : "clear-button-visible"
       }
@@ -15,7 +13,12 @@ export default function ClearButton({
         setSimpleText("");
         setPromiseRejected(false);
       }}
-      // className="clear-button"
     ></button>
   );
 }
+
+ClearButton.propTypes = {
+  simpleText: PropTypes.string,
+  setSimpleText: PropTypes.func,
+  setPromiseRejected: PropTypes.func,
+};

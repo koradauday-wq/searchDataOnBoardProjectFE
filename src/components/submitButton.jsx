@@ -1,3 +1,11 @@
+import PropTypes from "prop-types";
+
+SubmitButton.propTypes = {
+  isFocused: PropTypes.bool,
+  simpleText: PropTypes.string,
+  setPromiseRejected: PropTypes.func,
+};
+
 export default function SubmitButton({
   isFocused,
   simpleText,

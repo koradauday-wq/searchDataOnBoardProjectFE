@@ -10,7 +10,6 @@ import ErrorMsg from "./errorMsg";
 
 export default function SearchBar() {
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const [clickedSuggestion, setClickedSuggestion] = useState(false);
   const [simpleText, setSimpleText] = useState("");
   const [promiseRejected, setPromiseRejected] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -18,7 +17,6 @@ export default function SearchBar() {
   // All the suggestion words getting from the API
 
   const inputRef = useRef(null);
-  // const suggestionsRef = useRef(null);
 
   async function handleSearchBarChange(totalText) {
     let lastWord = "";
@@ -39,13 +37,10 @@ export default function SearchBar() {
         .then((res) => {
           setShowSuggestions(true);
           setPromiseRejected(false);
-          // console.log("PROMISE accepted");
-
           setSuggestionsArr(res);
         })
         .catch((e) => {
           setShowSuggestions(true);
-          // console.log("PROMISE REJECTED");
           setPromiseRejected(true);
         });
     }
@@ -55,26 +50,9 @@ export default function SearchBar() {
     debounce(handleSearchBarChange, 1000),
     []
   );
-  // useEffect(() => {
-  //   // console.log(suggestionsArr);
-  // });
-
-  // useEffect(() => {
-  //   try {
-  //     if (inputRef.current) {
-  //       inputRef.current.focus();
-  //     }
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }, [clickedSuggestion]);
 
   return (
     <div
-      // className="main"
-      // style={{
-      //   backgroundColor: !isFocused ? " rgb(251, 250, 250)" : "#d0d1d3ff",
-      // }}
       className={!isFocused ? " white-background-main" : "grey-background-main"}
     >
       <div className="container">
@@ -97,11 +75,8 @@ export default function SearchBar() {
           isFocused={isFocused}
           showSuggestions={showSuggestions}
           suggestionsArr={suggestionsArr}
-          clickedSuggestion={clickedSuggestion}
-          setClickedSuggestion={setClickedSuggestion}
           promiseRejected={promiseRejected}
           setPromiseRejected={setPromiseRejected}
-          // suggestionsRef={suggestionsRef}
           setShowSuggestions={setShowSuggestions}
         />
 

@@ -35,7 +35,7 @@ body {
   padding-top: 10px;
   padding-right: 0.66vw;
   transform: translate(8vw, 50px);
-  /* margin-right: 300px; */
+
   margin-right: 20vw;
   height: 35px;
   border-radius: 5px;
@@ -129,8 +129,6 @@ body {
   margin-left: 0.66vw;
   height: 30px;
   width: 2vw;
-  /* width: 30px;
-  min-width: 30px; */
   display: inline-block;
   margin-right: 0.66vw;
   background-image: url("/icons/clearButton.png");
@@ -145,8 +143,6 @@ body {
   margin-left: 0.66vw;
   height: 30px;
   width: 2vw;
-  /* width: 30px;
-  min-width: 30px; */
   display: inline-block;
   margin-right: 0.66vw;
   background-image: url("/icons/clearButton.png");
@@ -221,8 +217,6 @@ body {
   border: none;
   border-radius: 20px;
   width: 5.33vw;
-  /* width: 80px;
-  min-width: 80px; */
   margin-right: 0.66vw;
   color: #454545;
   background-color: hsl(0, 1%, 86%);
@@ -234,8 +228,6 @@ body {
   border: none;
   border-radius: 20px;
   width: 5.33vw;
-  /* width: 80px;
-  min-width: 80px; */
   margin-right: 0.66vw;
   color: white;
   background-color: #2770ef;
