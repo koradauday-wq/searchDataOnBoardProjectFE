@@ -1,67 +1,57 @@
-import { getLastWord } from "./searchDataSearchBar";
+import { getLastWord, removeLastWordAndAddNewWord } from "../utils/utlis";
 import "./SearchDataSearchBar.css";
-
+import { statements } from "../utils/strings";
 export default function Suggestions({
   arr,
-  setClickedSuggestionDiv,
-  clickedSuggestionDiv,
+  setClickedSuggestion,
+  clickedSuggestion,
   simpleText,
   setSimpleText,
-  promiseRejected,
+  // promiseRejected,
+  // suggestionsRef,
+  setShowSuggestions,
 }) {
-  let total_Text = simpleText;
-  let lastWord = getLastWord(total_Text);
+  let lastWord = getLastWord(simpleText);
+
+  function onClickSuggestion(e) {
+    e.preventDefault();
+    let clickedWord = e.target.innerText;
+    // console.log("clicked");
+    let newText = removeLastWordAndAddNewWord(clickedWord, simpleText);
+    setSimpleText(newText);
+    setClickedSuggestion(!clickedSuggestion);
+    setShowSuggestions(false);
+  }
 
   return (
     <div className="suggestions-box">
-      {!(arr.length === 0) && !promiseRejected && (
-        <div>
+      {!(arr.length === 0) && (
+        <div
+        // ref={suggestionsRef}
+        >
           {arr.map((word) => {
-            let isMatchedWithLastWord = false;
-            if (lastWord === word) {
-              isMatchedWithLastWord = true;
-            } else {
-              isMatchedWithLastWord = false;
-            }
+            const isMatchedWithLastWord = lastWord === word;
 
             return (
               <div
                 key={word}
-                className="suggestions-div"
-                style={{
-                  fontWeight: isMatchedWithLastWord ? "bold" : "normal",
+                className={
+                  isMatchedWithLastWord
+                    ? "bold-suggestions-word"
+                    : "normal-suggestions-word"
+                }
+                // style={{
+                //   fontWeight: isMatchedWithLastWord ? "bold" : "normal",
 
-                  color: "#454545",
-                  margin: "3px",
-                  backgroundColor: "rgba(239, 240, 240, 1)",
-                  borderRadius: "7px",
-                  width: "30vw",
-                  maxWidth: "fitContent",
-                  textAlign: "center",
-                }}
-                onClick={(e) => {
-                  let clicked_word = e.target.innerText;
-                  console.log(e.target.innerText);
-
-                  let totalText = total_Text;
-                  let last_Word = lastWord;
-
-                  console.log(`clicked:${word}`);
-                  let n = last_Word.length;
-                  while (n > 0) {
-                    last_Word = last_Word.slice(0, -1);
-
-                    totalText = totalText.slice(0, -1);
-                    n--;
-                  }
-
-                  totalText += clicked_word;
-                  totalText += " ";
-                  setSimpleText(totalText);
-                  // setTimeout(() => {
-                  setClickedSuggestionDiv(!clickedSuggestionDiv);
-                  // }, 10);
-                }}
+                //   color: "#454545",
+                //   margin: "3px",
+                //   backgroundColor: "rgba(239, 240, 240, 1)",
+                //   borderRadius: "7px",
+                //   width: "30vw",
+                //   maxWidth: "fitContent",
+                //   textAlign: "center",
+                // }}
+                onMouseDown={onClickSuggestion}
               >
                 {word}
               </div>
@@ -70,17 +60,17 @@ export default function Suggestions({
         </div>
       )}
 
-      {arr.length === 0 && !promiseRejected && (
+      {arr.length === 0 && (
         <div className="empty-suggestions-msg">
-          <p>suggestions are empty</p>
+          <p>{statements.EmptySuggestions}</p>
         </div>
       )}
 
-      {promiseRejected && (
+      {/* {promiseRejected && (
         <div className="rejection-msg">
-          <p>Something went Wrong...</p>
+          <p>{statements.SomethingWentWrong}</p>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
